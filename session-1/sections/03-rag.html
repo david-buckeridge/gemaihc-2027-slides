@@ -1,0 +1,275 @@
+<style>
+  .rq-wrap { display: flex; flex-direction: column; align-items: center; gap: 1.6vw; }
+  .rq-wrap > .rq-t { position: absolute; width: 0; height: 0; opacity: 0; pointer-events: none; }
+  .rq-row { display: flex; gap: 2vw; width: 84vw; align-items: stretch; justify-content: center; }
+  .rq-card { flex: 1; display: flex; flex-direction: column; gap: 1vw; border: 1.5px solid var(--rule-soft); border-radius: 1.6vw; padding: 1.7vw 1.6vw; cursor: pointer; text-align: left; transition: border-color .15s ease, transform .15s ease, background .15s ease; }
+  .rq-b1 { background: #E8ECA9; }
+  .rq-b2 { background: #F2E1D7; }
+  .rq-b3 { background: #E1DBEC; }
+  .rq-card:hover { transform: translateY(-0.4vw); border-color: var(--ink-soft); }
+  .rq-num { display: inline-flex; align-items: center; justify-content: center; width: 2.6vw; height: 2.6vw; border-radius: 50%; background: rgba(42, 36, 27, 0.12); font: italic 500 1.5vw "Cormorant Garamond", serif; color: var(--ink); }
+  .rq-q { font: 400 1.5vw/1.42 "Work Sans", sans-serif; margin: 0; }
+  .rq-reveal { margin-top: auto; }
+  .rq-prompt { display: flex; align-items: center; gap: 0.5vw; font: italic 400 1.3vw "Cormorant Garamond", serif; color: var(--ink-soft); }
+  .rq-answer { display: none; flex-direction: column; gap: 0.7vw; }
+  .rq-answer .chip { align-self: flex-start; font-size: 1.5vw; }
+  .rq-reason { font: 400 1.3vw/1.4 "Work Sans", sans-serif; color: var(--ink-soft); margin: 0; }
+  .rq-punch { opacity: 0; transition: opacity .3s ease; font: 500 1.7vw "Cormorant Garamond", serif; color: var(--ink); margin: 0; }
+  #rq1:checked ~ .rq-row label[for="rq1"] .rq-prompt,
+  #rq2:checked ~ .rq-row label[for="rq2"] .rq-prompt,
+  #rq3:checked ~ .rq-row label[for="rq3"] .rq-prompt { display: none; }
+  #rq1:checked ~ .rq-row label[for="rq1"] .rq-answer,
+  #rq2:checked ~ .rq-row label[for="rq2"] .rq-answer,
+  #rq3:checked ~ .rq-row label[for="rq3"] .rq-answer { display: flex; }
+  #rq1:checked ~ .rq-row label[for="rq1"] { border-color: var(--ink); background: #E3E895; }
+  #rq2:checked ~ .rq-row label[for="rq2"] { border-color: var(--ink); background: #EFDACD; }
+  #rq3:checked ~ .rq-row label[for="rq3"] { border-color: var(--ink); background: #DAD2E7; }
+  #rq1:checked ~ #rq2:checked ~ #rq3:checked ~ .rq-punch { opacity: 1; }
+</style>
+
+<section class="slide" data-label="RAG Intro">
+  <div class="eyebrow" style="font-size: 1.5vw;">Part 3 &middot; RAG</div>
+  <div class="pagedot"></div>
+  <div class="layout-hero" style="top: 11%; bottom: 11%; gap: 1.4vw;">
+    <h1 class="headline" style="font-size: 6vw;">RAG</h1>
+    <p class="subhead" style="color: var(--ink-soft);">Open-book AI: it looks it up before it answers.</p>
+  </div>
+</section>
+
+<section class="slide" data-label="RAG Warm-up">
+  <div class="eyebrow" style="font-size: 1.5vw;">Part 3 &middot; RAG</div>
+  <div class="pagedot"></div>
+  <div class="layout-hero" style="top: 11%; bottom: 11%; gap: 1.9vw;">
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 0.7vw;">
+      <p class="concept-label">Warm-up</p>
+      <h1 class="headline" style="font-size: 2.4vw;">Does the model already know?</h1>
+      <p class="body" style="font-size: 1.4vw; color: var(--ink-soft);">Or does it need to read the documents first?</p>
+    </div>
+    <div class="rq-wrap">
+      <input class="rq-t" type="checkbox" id="rq1">
+      <input class="rq-t" type="checkbox" id="rq2">
+      <input class="rq-t" type="checkbox" id="rq3">
+      <div class="rq-row">
+        <label class="rq-card rq-b1" for="rq1">
+          <span class="rq-num">1</span>
+          <p class="rq-q">What are the classic symptoms of measles?</p>
+          <div class="rq-reveal">
+            <span class="rq-prompt">&#9656; tap to reveal</span>
+            <span class="rq-answer">
+              <span class="chip card--sage">Memory may be enough</span>
+              <p class="rq-reason">For a basic answer. Verify official guidance before making real decisions.</p>
+            </span>
+          </div>
+        </label>
+        <label class="rq-card rq-b2" for="rq2">
+          <span class="rq-num">2</span>
+          <p class="rq-q">What does our health unit's 2026 outbreak plan say about school closures?</p>
+          <div class="rq-reveal">
+            <span class="rq-prompt">&#9656; tap to reveal</span>
+            <span class="rq-answer">
+              <span class="chip card--pink">Needs the documents</span>
+              <p class="rq-reason">It's your private file. The model never saw it.</p>
+            </span>
+          </div>
+        </label>
+        <label class="rq-card rq-b3" for="rq3">
+          <span class="rq-num">3</span>
+          <p class="rq-q">What changed in the WHO guidance released last week?</p>
+          <div class="rq-reveal">
+            <span class="rq-prompt">&#9656; tap to reveal</span>
+            <span class="rq-answer">
+              <span class="chip card--pink">Needs the documents</span>
+              <p class="rq-reason">It may be newer than the model's training data, so it needs a current source.</p>
+            </span>
+          </div>
+        </label>
+      </div>
+      <p class="rq-punch">For two, current documents are essential. In practice, verify all three.</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .rag-acr { display: flex; gap: 2.5vw; justify-content: center; align-items: flex-start; }
+  .rag-piece { display: flex; flex-direction: column; align-items: center; gap: 0.7vw; width: 20vw; }
+  .rag-piece .chip { font-size: 1.7vw; }
+  .rag-gloss { font: 400 1.3vw/1.4 "Work Sans", sans-serif; color: var(--ink-soft); text-align: center; margin: 0; }
+  .rw-flow { display: flex; align-items: flex-start; justify-content: center; gap: 0.6vw; }
+  .rw-node { display: flex; flex-direction: column; align-items: center; gap: 0.7vw; width: 13.5vw; }
+  .rw-node .chip { font-size: 1.25vw; white-space: nowrap; }
+  .rw-cap { font: 400 1.05vw/1.35 "Work Sans", sans-serif; color: var(--ink-soft); text-align: center; margin: 0; }
+  .rw-arrow { font-size: 1.6vw; color: var(--ink-soft); margin-top: 0.4vw; }
+</style>
+
+<section class="slide" data-label="What is RAG">
+  <div class="eyebrow" style="font-size: 1.5vw;">Part 3 &middot; RAG</div>
+  <div class="pagedot"></div>
+  <div class="layout-hero" style="top: 11%; bottom: 11%; gap: 2vw;">
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 0.8vw;">
+      <p class="concept-label">What is RAG</p>
+      <h1 class="headline" style="font-size: 2vw; max-width: 78vw;">Before answering, a RAG system retrieves relevant passages and adds them to the model's input. It can also show citations.</h1>
+    </div>
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 1vw;">
+      <div class="rag-acr">
+        <div class="rag-piece">
+          <span class="chip card--pink">Retrieval</span>
+          <p class="rag-gloss">Find the relevant passages in your documents.</p>
+        </div>
+        <div class="rag-piece">
+          <span class="chip card--lemon">Augmented</span>
+          <p class="rag-gloss">Add those passages to the model's input.</p>
+        </div>
+        <div class="rag-piece">
+          <span class="chip card--sage">Generation</span>
+          <p class="rag-gloss">Use the question and passages to write the answer.</p>
+        </div>
+      </div>
+    </div>
+    <div class="card" style="padding: 1.2vw 2.4vw; max-width: 72vw;">
+      <p class="body" style="font-size: 1.45vw; text-align: center;">It helps address the gaps from the warm-up: private files, newer information, and answers that need supporting sources.</p>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="How RAG works">
+  <div class="eyebrow" style="font-size: 1.5vw;">Part 3 &middot; RAG</div>
+  <div class="pagedot"></div>
+  <div class="layout-hero" style="top: 11%; bottom: 11%; gap: 2.4vw;">
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 0.7vw;">
+      <p class="concept-label">How RAG works</p>
+      <h1 class="headline" style="font-size: 2vw; max-width: 74vw;">A retriever finds relevant passages, adds them to the model's context, and the model writes an answer.</h1>
+    </div>
+    <div class="rw-flow">
+      <div class="rw-node">
+        <span class="chip card--pink">Question</span>
+        <p class="rw-cap">You ask across your 10 papers.</p>
+      </div>
+      <span class="rw-arrow">&rarr;</span>
+      <div class="rw-node">
+        <span class="chip card--lemon">Search</span>
+        <p class="rw-cap">It searches by keywords, meaning, or both.</p>
+      </div>
+      <span class="rw-arrow">&rarr;</span>
+      <div class="rw-node">
+        <span class="chip card--blush">Passages</span>
+        <p class="rw-cap">Pulls the few paragraphs that fit.</p>
+      </div>
+      <span class="rw-arrow">&rarr;</span>
+      <div class="rw-node">
+        <span class="chip card--lilac">Add to context</span>
+        <p class="rw-cap">Places those passages beside your question.</p>
+      </div>
+      <span class="rw-arrow">&rarr;</span>
+      <div class="rw-node">
+        <span class="chip card--sage">Grounded answer</span>
+        <p class="rw-cap">Uses them to answer and can show sources.</p>
+      </div>
+    </div>
+    <div class="card" style="padding: 1.2vw 2.4vw; max-width: 68vw;">
+      <p class="body" style="font-size: 1.45vw; text-align: center;">These passages are added to the model's input for this question. They do not permanently change what the model has learned.</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .nb-fields { display: flex; flex-direction: column; gap: 1vw; align-items: center; }
+  .nb-frow { display: flex; gap: 1vw; justify-content: center; }
+  .nb-fchip { border-radius: 999px; padding: 0.55vw 1.5vw; font-weight: 500; font-size: 1.25vw; color: var(--ink); }
+  .nb-c1 { background: var(--pink); }
+  .nb-c2 { background: var(--lemon); }
+  .nb-c3 { background: var(--blush); }
+  .nb-c4 { background: var(--sage); }
+  .nb-c5 { background: var(--lilac); }
+  .nb-c6 { background: rgba(255, 255, 255, 0.7); border: 1.5px dashed var(--rule-soft); }
+  .nb-link { display: inline-flex; align-items: center; gap: 0.7vw; background: var(--ink); color: var(--paper); border-radius: 999px; padding: 0.75vw 2.2vw; font: 500 1.4vw "Work Sans", sans-serif; text-decoration: none; cursor: pointer; }
+  .nb-link:hover { opacity: 0.85; }
+</style>
+
+<section class="slide" data-label="RAG Example">
+  <div class="eyebrow" style="font-size: 1.5vw;">Part 3 &middot; RAG</div>
+  <div class="pagedot"></div>
+  <div class="layout-hero" style="top: 9%; bottom: 8%; gap: 1.9vw;">
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 0.6vw;">
+      <p class="concept-label">Example</p>
+      <h1 class="headline" style="font-size: 2.1vw;">Seven papers, one question, one table.</h1>
+      <p class="body" style="font-size: 1.3vw; color: var(--ink-soft); max-width: 66vw; line-height: 1.45;">Seven studies on screen time, social media, and adolescent mental health, uploaded to NotebookLM. Ask it to extract the same fields from every paper.</p>
+    </div>
+    <div class="nb-fields">
+      <div class="nb-frow">
+        <span class="nb-fchip nb-c1">Study design</span>
+        <span class="nb-fchip nb-c2">Sample size</span>
+        <span class="nb-fchip nb-c3">Population</span>
+      </div>
+      <div class="nb-frow">
+        <span class="nb-fchip nb-c4">Screen time measure</span>
+        <span class="nb-fchip nb-c5">Mental health outcome</span>
+        <span class="nb-fchip nb-c6">Main finding</span>
+      </div>
+    </div>
+    <a class="nb-link" href="https://notebooklm.google.com/notebook/b62036d4-5aab-41dd-91c5-36434d55f4df" target="_blank" rel="noopener">Open the notebook &rarr;</a>
+    <div class="card" style="padding: 1vw 2.4vw; max-width: 66vw;">
+      <p class="body" style="font-size: 1.35vw; text-align: center;">It can turn hours of manual extraction into a first draft in minutes. Check each cell against the source before you rely on it.</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .ttl-wrap { display: flex; flex-direction: column; align-items: center; gap: 1.3vw; }
+  .ttl-wrap > .ttl-t { position: absolute; width: 0; height: 0; opacity: 0; pointer-events: none; }
+  .ttl-list { display: flex; flex-direction: column; gap: 0.9vw; width: 72vw; }
+  .ttl-row { display: flex; align-items: center; gap: 1.1vw; border: 1.5px solid var(--rule-soft); border-radius: 1.2vw; padding: 1vw 1.6vw; cursor: pointer; transition: border-color .15s ease, background .15s ease, transform .15s ease; }
+  .ttl-row:hover { transform: translateY(-0.25vw); border-color: var(--ink-soft); }
+  .ttl-r1 { background: #E8ECA9; }
+  .ttl-r2 { background: #F2E1D7; }
+  .ttl-r3 { background: #E1DBEC; }
+  .ttl-badge { display: inline-flex; align-items: center; justify-content: center; width: 2.2vw; height: 2.2vw; border-radius: 50%; background: rgba(42, 36, 27, 0.12); font: italic 500 1.3vw "Cormorant Garamond", serif; color: var(--ink); flex-shrink: 0; }
+  .ttl-stmt { flex: 1; font: 400 1.35vw/1.4 "Work Sans", sans-serif; margin: 0; }
+  .ttl-tag { display: none; border-radius: 999px; padding: 0.35vw 1.1vw; font-weight: 500; font-size: 1.05vw; flex-shrink: 0; color: var(--ink); }
+  .ttl-true { background: var(--sage); }
+  .ttl-false { background: var(--pink); }
+  .ttl-cta { font: italic 400 1.3vw "Cormorant Garamond", serif; color: var(--ink-soft); cursor: pointer; }
+  .ttl-explain { display: flex; flex-direction: column; align-items: center; gap: 0.5vw; opacity: 0; transition: opacity .3s ease; text-align: center; }
+  .ttl-reason { font: 400 1.3vw/1.4 "Work Sans", sans-serif; color: var(--ink-soft); margin: 0; max-width: 64vw; }
+  #ttlReveal:checked ~ .ttl-list .ttl-tag { display: inline-flex; }
+  #ttlReveal:checked ~ .ttl-list .ttl-row.ttl-lie { border-color: var(--ink); background: #DAD2E7; }
+  #ttlReveal:checked ~ .ttl-list .ttl-row.ttl-r1 { border-color: var(--ink); background: #E3E895; }
+  #ttlReveal:checked ~ .ttl-list .ttl-row.ttl-r2 { border-color: var(--ink); background: #EFDACD; }
+  #ttlReveal:checked ~ .ttl-cta { display: none; }
+  #ttlReveal:checked ~ .ttl-explain { opacity: 1; }
+</style>
+
+<section class="slide" data-label="Two Truths and a Lie">
+  <div class="eyebrow" style="font-size: 1.5vw;">Part 3 &middot; RAG</div>
+  <div class="pagedot"></div>
+  <div class="layout-hero" style="top: 10%; bottom: 8%; gap: 1.7vw;">
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 0.6vw;">
+      <p class="concept-label">Two truths and a lie</p>
+      <h1 class="headline" style="font-size: 2.3vw;">Which one is false?</h1>
+      <p class="body" style="font-size: 1.3vw; color: var(--ink-soft);">Vote out loud. Then tap any line to check.</p>
+    </div>
+    <div class="ttl-wrap">
+      <input class="ttl-t" type="checkbox" id="ttlReveal">
+      <div class="ttl-list">
+        <label class="ttl-row ttl-r1" for="ttlReveal">
+          <span class="ttl-badge">A</span>
+          <p class="ttl-stmt">RAG lets a model answer using documents it was never trained on.</p>
+          <span class="ttl-tag ttl-true">True</span>
+        </label>
+        <label class="ttl-row ttl-r2" for="ttlReveal">
+          <span class="ttl-badge">B</span>
+          <p class="ttl-stmt">RAG can reduce hallucinations by giving the model relevant source text to work from.</p>
+          <span class="ttl-tag ttl-true">True</span>
+        </label>
+        <label class="ttl-row ttl-r3 ttl-lie" for="ttlReveal">
+          <span class="ttl-badge">C</span>
+          <p class="ttl-stmt">RAG permanently teaches the model new facts, so it remembers them next time.</p>
+          <span class="ttl-tag ttl-false">The lie</span>
+        </label>
+      </div>
+      <label class="ttl-cta" for="ttlReveal">&#9656; tap any line to reveal</label>
+      <div class="ttl-explain">
+        <p class="ttl-reason">The documents are retrieved when needed. They do not permanently change what the model has learned.</p>
+      </div>
+    </div>
+  </div>
+</section>
