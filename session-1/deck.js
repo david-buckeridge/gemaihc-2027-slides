@@ -3,9 +3,10 @@ const SECTIONS = [
   'sections/01-llm-foundations.html',
   'sections/02-prompt-engineering.html',
   'sections/03-rag.html',
-  'sections/04-beacon-case-study.html',
-  'sections/05-reliability-privacy-bias.html',
-  'sections/06-closing.html',
+  'sections/04-agents-workflows.html',
+  'sections/05-beacon-case-study.html',
+  'sections/06-reliability-privacy-bias.html',
+  'sections/07-closing.html',
 ];
 
 // URL hash -> which SECTIONS file it belongs to (by index above)
@@ -14,9 +15,10 @@ const SECTION_ANCHORS = {
   'llm-foundations': 1,
   'prompt-engineering': 2,
   'rag': 3,
-  'beacon': 4,
-  'reliability': 5,
-  'closing': 6,
+  'agents': 4,
+  'beacon': 5,
+  'reliability': 6,
+  'closing': 7,
 };
 
 const deck = document.getElementById('deck');

@@ -1,98 +1,5 @@
 
 
-<section class="slide" data-label="Hook">
-  <div class="eyebrow" style="font-size: 1.5vw;">Part 1 &middot; LLM Foundations</div>
-  <div class="pagedot"></div>
-  <div style="position: absolute; top: 17%; bottom: 13%; left: 7%; right: 7%; display: grid; grid-template-columns: 0.9fr 1.1fr; align-items: center; gap: 4vw;">
-    <div style="display: flex; flex-direction: column; gap: 1.2vw; align-items: flex-start;">
-      <p class="kicker" style="font-size: 2vw;">Icebreaker</p>
-      <h1 class="headline" style="font-size: 3.7vw;">Chatbot yourself.</h1>
-      <p class="body" style="font-size: 1.55vw; line-height: 1.45; max-width: 34vw; color: var(--ink-soft);">Open your usual chatbot and ask the same question with your name.</p>
-      <div class="card" style="padding: 1vw 1.4vw; border-radius: 1.2vw;">
-        <p class="body" style="font-size: 1.5vw;">who is [your name]?</p>
-      </div>
-    </div>
-    <div style="display: flex; justify-content: center; align-items: center;">
-      <img src="images/chatbot-yourself-search.png" alt="Chatbot search box asking who is Yachen Li" style="width: 44vw; max-height: 22vw; object-fit: contain; border-radius: 1vw; box-shadow: 0 1vw 2.8vw rgba(42, 36, 27, 0.14);">
-    </div>
-  </div>
-</section>
-
-<!-- ===================== HOOK FOLLOW-UP (3 reveal cards) ===================== -->
-<style>
-  .hb-wrap > .hb-t { position: absolute; width: 0; height: 0; opacity: 0; pointer-events: none; }
-  .hb-row { display: flex; gap: 2vw; width: 84vw; align-items: stretch; justify-content: center; }
-  .hb-card { flex: 1; display: flex; flex-direction: column; gap: 0.9vw; border: 1.5px solid var(--rule-soft);
-             border-radius: 1.4vw; padding: 1.6vw 1.5vw; cursor: pointer; text-align: left;
-             transition: transform .15s ease, border-color .15s ease; }
-  .hb-card:hover { transform: translateY(-0.4vw); border-color: var(--ink-soft); }
-  .hb-1 { background: #F6EAF1; } .hb-2 { background: #F4F5D6; } .hb-3 { background: #ECF1E2; }
-  .hb-q { font: 500 1.55vw/1.35 "Work Sans", sans-serif; color: var(--ink); margin: 0; }
-  .hb-reveal { margin-top: auto; }
-  .hb-prompt { font: italic 400 1.3vw "Cormorant Garamond", serif; color: var(--ink-soft); }
-  .hb-answer { display: none; flex-direction: column; gap: 0.4vw; }
-  .hb-lesson { font: 600 1.3vw "Work Sans", sans-serif; color: var(--ink); }
-  .hb-reason { font: 400 1.2vw/1.35 "Work Sans", sans-serif; color: var(--ink-soft); margin: 0; }
-  #hb1:checked ~ .hb-row label[for="hb1"] .hb-prompt,
-  #hb2:checked ~ .hb-row label[for="hb2"] .hb-prompt,
-  #hb3:checked ~ .hb-row label[for="hb3"] .hb-prompt { display: none; }
-  #hb1:checked ~ .hb-row label[for="hb1"] .hb-answer,
-  #hb2:checked ~ .hb-row label[for="hb2"] .hb-answer,
-  #hb3:checked ~ .hb-row label[for="hb3"] .hb-answer { display: flex; }
-  #hb1:checked ~ .hb-row label[for="hb1"],
-  #hb2:checked ~ .hb-row label[for="hb2"],
-  #hb3:checked ~ .hb-row label[for="hb3"] { border-color: var(--ink); }
-</style>
-
-<section class="slide" data-label="Hook debrief">
-  <div class="eyebrow" style="font-size: 1.5vw;">Part 1 &middot; LLM Foundations</div>
-  <div class="pagedot"></div>
-  <div class="layout-hero" style="top: 11%; bottom: 11%; gap: 1.9vw;">
-    <div style="display: flex; flex-direction: column; align-items: center; gap: 0.6vw;">
-      <p class="concept-label">Let&rsquo;s compare</p>
-      <h1 class="headline" style="font-size: 2.3vw;">What did your chatbot say about you?</h1>
-      <p class="body" style="font-size: 1.35vw; color: var(--ink-soft);">Hands up for each. Tap a card for what it reveals.</p>
-    </div>
-    <div class="hb-wrap">
-      <input class="hb-t" type="checkbox" id="hb1">
-      <input class="hb-t" type="checkbox" id="hb2">
-      <input class="hb-t" type="checkbox" id="hb3">
-      <div class="hb-row">
-        <label class="hb-card hb-1" for="hb1">
-          <p class="hb-q">Who got a single answer, but it wasn&rsquo;t you?</p>
-          <div class="hb-reveal">
-            <span class="hb-prompt">&#9656; tap to reveal</span>
-            <span class="hb-answer">
-              <span class="hb-lesson">Hallucination</span>
-              <p class="hb-reason">Confident, specific, and wrong. It filled the gap with a plausible person.</p>
-            </span>
-          </div>
-        </label>
-        <label class="hb-card hb-2" for="hb2">
-          <p class="hb-q">Who got several possible people, none of them right?</p>
-          <div class="hb-reveal">
-            <span class="hb-prompt">&#9656; tap to reveal</span>
-            <span class="hb-answer">
-              <span class="hb-lesson">Pattern, not identity</span>
-              <p class="hb-reason">It blends whoever is most common in the training data, not you.</p>
-            </span>
-          </div>
-        </label>
-        <label class="hb-card hb-3" for="hb3">
-          <p class="hb-q">Who got it right, whether one answer or several?</p>
-          <div class="hb-reveal">
-            <span class="hb-prompt">&#9656; tap to reveal</span>
-            <span class="hb-answer">
-              <span class="hb-lesson">Recall, not knowing</span>
-              <p class="hb-reason">You likely have a real online footprint it could echo back.</p>
-            </span>
-          </div>
-        </label>
-      </div>
-    </div>
-  </div>
-</section>
-
 <section class="slide" data-label="LLM Foundations">
   <div class="eyebrow" style="font-size: 1.5vw;">Part 1 &middot; LLM Foundations</div>
   <div class="pagedot"></div>
@@ -502,14 +409,14 @@
       <div class="pv-rl">ChatGPT</div>
       <div class="pv-c">Instant</div>
       <div class="pv-c">Medium</div>
-      <div class="pv-c">High<small>GPT-5.6 Sol</small></div>
-      <div class="pv-c">Intelligence:<small>Instant / Medium / High</small></div>
+      <div class="pv-c">High<small>GPT-5.6 Sol &middot; GPT-6 Pro</small></div>
+      <div class="pv-c">Thinking slider<small>Instant &rarr; Extra High</small></div>
 
       <div class="pv-rl">Gemini</div>
-      <div class="pv-c">3.1 Flash-Lite</div>
-      <div class="pv-c">3.5 Flash</div>
+      <div class="pv-c">3.5 Flash-Lite</div>
+      <div class="pv-c">3.8 Flash</div>
       <div class="pv-c">3.1 Pro</div>
-      <div class="pv-c">Extended thinking</div>
+      <div class="pv-c">Extended thinking<small>+ Deep Think</small></div>
 
       <!-- what Google calls each one (revealed) -->
       <div class="pv-rl pv-hide" style="background: transparent;"></div>
@@ -527,7 +434,7 @@
     </div>
 
     <p class="pv-note">
-      Turn it up when the task has <b>steps that build on each other</b>. Leave it low for straightforward language work: it is slower and burns your usage limits faster.
+      Turn it up when the task has <b>steps that build on each other</b>. Leave it low for straightforward language work: it is slower and burns your usage limits faster. The same dial is what's quietly running under the &ldquo;agent&rdquo; features you've probably already clicked on: more thinking, more steps, before you see an answer. More on that later.
     </p>
   </div>
 </section>

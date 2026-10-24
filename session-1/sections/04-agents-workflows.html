@@ -1,0 +1,107 @@
+<!-- ============================================================
+     NEW SECTION: Agents & Agentic Workflows.
+     Sits between RAG (Part 3) and the BEACON case study, filling the
+     "Part 4" slot the original numbering left open.
+     Built from style.css primitives only (card, chip, chip-row,
+     concept-label), no new bespoke classes, same approach as the
+     BEACON case study section.
+     Sources: CDC, "Considerations for Agentic Research in Public
+     Health," 2026; scoping review of agentic AI in healthcare,
+     npj Digital Medicine, 2026.
+     ============================================================ -->
+<section class="slide" data-label="From RAG to agents">
+  <div class="eyebrow" style="font-size: 1.5vw;">Part 4 &middot; Agents &amp; Agentic Workflows</div>
+  <div class="pagedot"></div>
+  <div class="layout-hero" style="top: 10%; bottom: 10%; gap: 1.6vw;">
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 0.6vw;">
+      <p class="concept-label">From one tool to many</p>
+      <h1 class="headline" style="font-size: 2.1vw; max-width: 76vw;">RAG gave the model one tool: retrieval. An agent can use several, and decide for itself when to call them.</h1>
+    </div>
+    <div style="display: flex; gap: 2vw; justify-content: center; align-items: flex-start;">
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 0.7vw; width: 21vw;">
+        <span class="chip card--pink" style="font-size: 1.5vw;">Autonomous</span>
+        <p class="body-sm" style="color: var(--ink-soft); text-align: center;">Runs multiple steps without a new prompt from you at each one.</p>
+      </div>
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 0.7vw; width: 21vw;">
+        <span class="chip card--lemon" style="font-size: 1.5vw;">Goal-directed</span>
+        <p class="body-sm" style="color: var(--ink-soft); text-align: center;">Works toward the outcome you gave it and checks its own progress.</p>
+      </div>
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 0.7vw; width: 21vw;">
+        <span class="chip card--sage" style="font-size: 1.5vw;">Tool-using</span>
+        <p class="body-sm" style="color: var(--ink-soft); text-align: center;">Calls a search, a database, an app, on its own initiative, not just yours.</p>
+      </div>
+    </div>
+    <div class="card" style="padding: 1.2vw 2.4vw; max-width: 70vw;">
+      <p class="body" style="font-size: 1.4vw; text-align: center;">All three together are what separate an agent from a chatbot that only answers what you type.</p>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="Not hypothetical">
+  <div class="eyebrow" style="font-size: 1.5vw;">Part 4 &middot; Agents &amp; Agentic Workflows</div>
+  <div class="pagedot"></div>
+  <div class="layout-hero" style="top: 10%; bottom: 10%; gap: 1.7vw;">
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 0.6vw;">
+      <p class="concept-label">Not hypothetical</p>
+      <h1 class="headline" style="font-size: 2.2vw; max-width: 74vw;">If you've used Claude or ChatGPT recently, you've probably already delegated a multi-step task to one.</h1>
+    </div>
+    <div style="display: flex; gap: 1.4vw; justify-content: center; align-items: stretch;">
+      <div class="card card--pink" style="padding: 1.1vw 1.4vw; width: 24vw; text-align: left;">
+        <p class="body" style="font-size: 1.35vw; font-weight: 600; margin-bottom: 0.3vw;">Ask for the outcome, not the steps</p>
+        <p class="body-sm" style="color: var(--ink-soft);">Claude's Cowork mode plans a multi-step task across files and apps, then carries it out end to end.</p>
+      </div>
+      <div class="card card--lemon" style="padding: 1.1vw 1.4vw; width: 24vw; text-align: left;">
+        <p class="body" style="font-size: 1.35vw; font-weight: 600; margin-bottom: 0.3vw;">Builds while you wait</p>
+        <p class="body-sm" style="color: var(--ink-soft);">ChatGPT's agent mode can research, draft a document or spreadsheet, and pause only when it needs your input.</p>
+      </div>
+      <div class="card card--sage" style="padding: 1.1vw 1.4vw; width: 24vw; text-align: left;">
+        <p class="body" style="font-size: 1.35vw; font-weight: 600; margin-bottom: 0.3vw;">Lives inside tools you already use</p>
+        <p class="body-sm" style="color: var(--ink-soft);">On GitHub it can open a pull request for review. In Slack, a teammate can delegate a task right from the channel.</p>
+      </div>
+    </div>
+    <p class="body-sm" style="color: var(--ink-soft); text-align: center; max-width: 66vw;">You approve the goal, and the final result. Everything in between, it plans and does itself.</p>
+  </div>
+</section>
+
+<section class="slide" data-label="Agent worked example">
+  <div class="eyebrow" style="font-size: 1.5vw;">Part 4 &middot; Agents &amp; Agentic Workflows</div>
+  <div class="pagedot"></div>
+  <div class="layout-hero" style="top: 9%; bottom: 9%; gap: 1.6vw;">
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 0.6vw;">
+      <p class="concept-label">Same task, delegated</p>
+      <h1 class="headline" style="font-size: 2vw; max-width: 78vw;">Remember screening abstracts, back in Part 2? Now imagine it as a loop, not a single prompt.</h1>
+    </div>
+    <div style="display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 1vw; font-size: 1.3vw;">
+      <span class="chip card--pink">Search ClinicalTrials.gov</span>
+      <span style="color: var(--ink-soft);">&rarr;</span>
+      <span class="chip card--lemon">Check each result against your criteria</span>
+      <span style="color: var(--ink-soft);">&rarr;</span>
+      <span class="chip card--blush">Flag the one that doesn't clearly fit</span>
+      <span style="color: var(--ink-soft);">&rarr;</span>
+      <span class="chip card--lilac">Ask you only about that one</span>
+      <span style="color: var(--ink-soft);">&rarr;</span>
+      <span class="chip card--sage">Compile the results</span>
+    </div>
+    <div class="card" style="padding: 1.2vw 2.4vw; max-width: 74vw;">
+      <p class="body" style="font-size: 1.35vw; text-align: center;">It still needs the same reproducible decision rule from Exercise 1: criteria, format, a reason for every call. An agent just runs that rule across more steps, unsupervised, so a vague rule now compounds across the whole loop instead of one answer.</p>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="Agents: where things stand">
+  <div class="eyebrow" style="font-size: 1.5vw;">Part 4 &middot; Agents &amp; Agentic Workflows</div>
+  <div class="pagedot"></div>
+  <div class="layout-hero" style="top: 10%; bottom: 10%; gap: 1.5vw;">
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 0.6vw;">
+      <p class="concept-label">How mature is this, really?</p>
+      <h1 class="headline" style="font-size: 2vw; max-width: 78vw;">Earlier than the hype suggests. A 2026 scoping review found seven published healthcare studies. None yet in public health.</h1>
+    </div>
+    <div class="card" style="padding: 1.2vw 2.2vw; max-width: 76vw;">
+      <p class="body" style="font-size: 1.32vw; text-align: center;">CDC's own guidance describes agentic &ldquo;Deep Research&rdquo; tools doing autonomous multi-step literature synthesis and cross-jurisdiction policy scans, close to work you already do. It also says: never point one at PHI, PII, or paywalled sources, and always have an expert validate the output before it informs a decision or goes public.</p>
+    </div>
+    <p class="body-sm" style="color: var(--ink-soft); text-align: center; max-width: 68vw;">Same lesson as the rest of this course: the model can move fast. Whether that's trustworthy is a design choice, not a given. Next, a system built around exactly that trade-off.</p>
+    <p class="slide-source">
+      Centers for Disease Control and Prevention, &ldquo;Considerations for Agentic Research in Public Health,&rdquo; 2026; and a scoping review of agentic AI in healthcare, <em>npj Digital Medicine</em>, 2026.
+    </p>
+  </div>
+</section>
